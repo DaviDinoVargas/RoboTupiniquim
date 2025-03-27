@@ -1,4 +1,6 @@
-﻿namespace RoboTupiniquim
+﻿using System.ComponentModel;
+
+namespace RoboTupiniquim
 {
     internal class Program
     {
@@ -27,15 +29,39 @@
 
             Console.WriteLine("Digite os comandos para o robô (D, E, M): ");
             string comandos = Console.ReadLine()!.ToUpper();
-            /*foreach (char opcaoMovimento in comandos)
+
+            int indiceDirecao = 0;
+
+            foreach (var kvp in rosaDosVentos)
+            {
+                if (kvp.Value == direcaoInicial)
+                {
+                    indiceDirecao = kvp.Key;
+                    break;
+                }
+            }
+
+            foreach (char opcaoMovimento in comandos)
             {
                 switch (opcaoMovimento)
                 {
                     case 'D':
+                        indiceDirecao = (indiceDirecao + 1) % rosaDosVentos.Count;
+                        break;
                     case 'E':
+                        indiceDirecao = (indiceDirecao + 4) % rosaDosVentos.Count;
+                        break;
                     case 'M':
+                        switch (indiceDirecao)
+                        {
+                            case 0: y++; break;
+                            case 1: x++; break;
+                            case 2: y--; break;
+                            case 3: x--; break;
+                        }
+                        break;
                 }
-            }*/
+            }
             char simbolo;
             switch (direcaoInicial)
             {
@@ -69,7 +95,9 @@
 
             }
             Console.ReadLine();
-
+            Console.WriteLine($"Posição Final: {x} {y}");
+            Console.WriteLine($"Posição Final: {rosaDosVentos[indiceDirecao]}");
+            Console.ReadLine();
 
         }
     }
