@@ -63,7 +63,7 @@ namespace RoboTupiniquim
                 }
             }
             char simbolo;
-            switch (direcaoInicial)
+            switch (rosaDosVentos[indiceDirecao])
             {
                 case 'N':
                     simbolo = '↑';
