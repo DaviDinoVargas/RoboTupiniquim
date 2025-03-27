@@ -11,6 +11,10 @@
                 {2, 'S'},
                 {3, 'O'}
             };
+            Console.WriteLine("Digite o tamanho do plano cartesiano em X e Y: ");
+            string[] planoCartesiano = Console.ReadLine()!.Split(' ');
+            int cartesianoX = Convert.ToInt32(planoCartesiano[0]);
+            int cartesianoY = Convert.ToInt32(planoCartesiano[1]);
 
             Console.WriteLine("Digite a posição inicial do robô em X e Y: ");
             string[] posicaoInicial = Console.ReadLine()!.Split(' ');
@@ -23,7 +27,7 @@
 
             Console.WriteLine("Digite os comandos para o robô (D, E, M): ");
             string comandos = Console.ReadLine()!.ToUpper();
-            foreach (char opcaoMovimento in comandos)
+            /*foreach (char opcaoMovimento in comandos)
             {
                 switch (opcaoMovimento)
                 {
@@ -31,7 +35,41 @@
                     case 'E':
                     case 'M':
                 }
+            }*/
+            char simbolo;
+            switch (direcaoInicial)
+            {
+                case 'N':
+                    simbolo = '↑';
+                    break;
+                case 'S':
+                    simbolo = '↓';
+                    break;
+                case 'O':
+                    simbolo = '←';
+                    break;
+                case 'L':
+                    simbolo = '→';
+                    break;
+                default:
+                    simbolo = '?';
+                    break;
             }
+            for(int i = 0; i < cartesianoY; i++)
+            {
+                for (int j = 0; j < cartesianoX; j++)
+                {
+                    if (i == y && j == x)
+                        Console.Write(simbolo + " ");
+                    else
+                        Console.Write(". ");
+                }
+                Console.WriteLine();
+                
+
+            }
+            Console.ReadLine();
+
 
         }
     }
