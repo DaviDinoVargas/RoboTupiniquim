@@ -13,19 +13,44 @@ namespace RoboTupiniquim
                 {2, 'S'},
                 {3, 'O'}
             };
-            Console.WriteLine("Digite o tamanho do plano cartesiano em X e Y: ");
-            string[] planoCartesiano = Console.ReadLine()!.Split(' ');
-            int cartesianoX = Convert.ToInt32(planoCartesiano[0]);
-            int cartesianoY = Convert.ToInt32(planoCartesiano[1]);
 
-            Console.WriteLine("Digite a posição inicial do robô em X e Y: ");
+            int cartesianoX, cartesianoY;
+
+            while (true)
+            {
+                Console.WriteLine("______________________________________________________________________");
+                Console.WriteLine("Digite o tamanho do plano cartesiano X e Y (valor área max de 20x20): ");
+                Console.WriteLine("______________________________________________________________________");
+                string[] planoCartesiano = Console.ReadLine()!.Split(' ');
+
+                if (planoCartesiano.Length == 2 &&
+                    int.TryParse(planoCartesiano[0], out cartesianoX) &&
+                    int.TryParse(planoCartesiano[1], out cartesianoY) &&
+                    cartesianoX >= 1 && cartesianoX <= 20 &&
+                    cartesianoY >= 1 && cartesianoY <= 20)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("______________________________________________________________________");
+                    Console.WriteLine("                 Entrada inválida. Tente novamente.");
+                    Console.WriteLine("______________________________________________________________________");
+                }
+            }
+            Console.WriteLine("______________________________________________________________________");
+            Console.WriteLine($"Plano cartesiano de tamanho {cartesianoX} x {cartesianoY} foi aceito.");
+            Console.WriteLine("______________________________________________________________________");
+
+
+
+            Console.WriteLine("______________________________________________________________________");
+            Console.WriteLine("       Digite a posição inicial do robô X, Y && (N, L, O, S): ");
+            Console.WriteLine("______________________________________________________________________");
             string[] posicaoInicial = Console.ReadLine()!.Split(' ');
             int x = Convert.ToInt32(posicaoInicial[0]);
             int y = Convert.ToInt32(posicaoInicial[1]);
-
-            Console.WriteLine("Digite a direção inicial do robô (N, L, O, S): ");
-            char direcaoInicial = Char.ToUpper(Console.ReadKey().KeyChar);
-            Console.ReadLine();
+            char direcaoInicial = Char.ToUpper(posicaoInicial[2][0]);
 
             Console.WriteLine("Digite os comandos para o robô (D, E, M): ");
             string comandos = Console.ReadLine()!.ToUpper();
@@ -49,7 +74,7 @@ namespace RoboTupiniquim
                         indiceDirecao = (indiceDirecao + 1) % rosaDosVentos.Count;
                         break;
                     case 'E':
-                        indiceDirecao = (indiceDirecao + 4) % rosaDosVentos.Count;
+                        indiceDirecao = (indiceDirecao -1 + rosaDosVentos.Count) % rosaDosVentos.Count;
                         break;
                     case 'M':
                         switch (indiceDirecao)
@@ -72,7 +97,7 @@ namespace RoboTupiniquim
                     simbolo = '↓';
                     break;
                 case 'O':
-                    simbolo = '←';
+                    simbolo = '<';
                     break;
                 case 'L':
                     simbolo = '→';
@@ -81,22 +106,21 @@ namespace RoboTupiniquim
                     simbolo = '?';
                     break;
             }
-            for(int i = 0; i < cartesianoY; i++)
-            {
-                for (int j = 0; j < cartesianoX; j++)
+          
+                for (int i = 0; i < cartesianoY; i++)
                 {
-                    if (i == y && j == x)
-                        Console.Write(simbolo + " ");
-                    else
-                        Console.Write(". ");
+                    for (int j = 0; j < cartesianoX; j++)
+                    {
+                        if (i == y && j == x)
+                            Console.Write(simbolo + " ");
+                        else
+                            Console.Write(". ");
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
-                
-
-            }
-            Console.ReadLine();
-            Console.WriteLine($"Posição Final: {x} {y}");
-            Console.WriteLine($"Posição Final: {rosaDosVentos[indiceDirecao]}");
+            
+            Console.WriteLine($"\n Posição Final: {x} {y}");
+            Console.WriteLine($" Posição Direção robô: {rosaDosVentos[indiceDirecao]}");
             Console.ReadLine();
 
         }
