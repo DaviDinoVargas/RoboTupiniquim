@@ -42,19 +42,36 @@ namespace RoboTupiniquim
             Console.WriteLine($"Plano cartesiano de tamanho {cartesianoX} x {cartesianoY} foi aceito.");
             Console.WriteLine("______________________________________________________________________");
 
+            int x, y;
+            char direcaoInicial;
+            while (true)
+            {
+                Console.WriteLine("______________________________________________________________________");
+                Console.WriteLine("       Digite a posição inicial do robô X, Y && (N, L, O, S): ");
+                Console.WriteLine("______________________________________________________________________");
 
 
-            Console.WriteLine("______________________________________________________________________");
-            Console.WriteLine("       Digite a posição inicial do robô X, Y && (N, L, O, S): ");
-            Console.WriteLine("______________________________________________________________________");
-            string[] posicaoInicial = Console.ReadLine()!.Split(' ');
-            int x = Convert.ToInt32(posicaoInicial[0]);
-            int y = Convert.ToInt32(posicaoInicial[1]);
-            char direcaoInicial = Char.ToUpper(posicaoInicial[2][0]);
+                string[] entrada = Console.ReadLine()!.Trim().Split(' ');
+                if (entrada.Length == 3 && int.TryParse(entrada[0], out x) && int.TryParse(entrada[1], out y) && "NLOS".Contains(char.ToUpper(entrada[2][0])))
+                {
+                    direcaoInicial = char.ToUpper(entrada[2][0]);
+                    break;
+                }
+                Console.WriteLine("Entrada inválida! Insira dois números e uma letra (N, L, O, S), separados por espaço.");
+            }
 
-            Console.WriteLine("Digite os comandos para o robô (D, E, M): ");
-            string comandos = Console.ReadLine()!.ToUpper();
+            string comandos;
+            while (true)
+            {
+                Console.WriteLine("______________________________________________________________________");
+                Console.WriteLine("           Digite os comandos para o robô (D, E, M): ");
+                Console.WriteLine("______________________________________________________________________");
+                comandos = Console.ReadLine()!.ToUpper();
+                if (comandos.All(c => "DEM".Contains(c)))
+                    break;
 
+                Console.WriteLine("Entrada inválida.Tente novamente.");
+            }
             int indiceDirecao = 0;
 
             foreach (var kvp in rosaDosVentos)
@@ -112,15 +129,18 @@ namespace RoboTupiniquim
                     for (int j = 0; j < cartesianoX; j++)
                     {
                         if (i == y && j == x)
-                            Console.Write(simbolo + " ");
+                            Console.Write(" " + simbolo + " ");
                         else
-                            Console.Write(". ");
-                    }
+                        
+                        Console.Write(" . ");
+                        
+                }
                     Console.WriteLine();
                 }
-            
-            Console.WriteLine($"\n Posição Final: {x} {y}");
-            Console.WriteLine($" Posição Direção robô: {rosaDosVentos[indiceDirecao]}");
+            Console.WriteLine("______________________________________________________________________");
+            Console.WriteLine($"\n                Posição Final: {x} {y}");
+            Console.WriteLine($"               Posição Direção robô: {rosaDosVentos[indiceDirecao]}");
+            Console.WriteLine("______________________________________________________________________");
             Console.ReadLine();
 
         }
