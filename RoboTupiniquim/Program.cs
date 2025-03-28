@@ -14,33 +14,7 @@ namespace RoboTupiniquim
                 {3, 'O'}
             };
 
-            int cartesianoX, cartesianoY;
-
-            while (true)
-            {
-                Console.WriteLine("______________________________________________________________________");
-                Console.WriteLine("Digite o tamanho do plano cartesiano X e Y (valor área max de 20x20): ");
-                Console.WriteLine("______________________________________________________________________");
-                string[] planoCartesiano = Console.ReadLine()!.Split(' ');
-
-                if (planoCartesiano.Length == 2 &&
-                    int.TryParse(planoCartesiano[0], out cartesianoX) &&
-                    int.TryParse(planoCartesiano[1], out cartesianoY) &&
-                    cartesianoX >= 1 && cartesianoX <= 20 &&
-                    cartesianoY >= 1 && cartesianoY <= 20)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("______________________________________________________________________");
-                    Console.WriteLine("                 Entrada inválida. Tente novamente.");
-                    Console.WriteLine("______________________________________________________________________");
-                }
-            }
-            Console.WriteLine("______________________________________________________________________");
-            Console.WriteLine($"Plano cartesiano de tamanho {cartesianoX} x {cartesianoY} foi aceito.");
-            Console.WriteLine("______________________________________________________________________");
+            Validacoes.CartesianoValidacao();
 
             int x, y;
             char direcaoInicial;
@@ -124,9 +98,9 @@ namespace RoboTupiniquim
                     break;
             }
           
-                for (int i = 0; i < cartesianoY; i++)
+                for (int i = 0; i < Validacoes.cartesianoY; i++)
                 {
-                    for (int j = 0; j < cartesianoX; j++)
+                    for (int j = 0; j < Validacoes.cartesianoX; j++)
                     {
                         if (i == y && j == x)
                             Console.Write(" " + simbolo + " ");
