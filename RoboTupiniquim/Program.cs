@@ -20,10 +20,7 @@ namespace RoboTupiniquim
             char direcaoInicial;
             while (true)
             {
-                Console.WriteLine("______________________________________________________________________");
-                Console.WriteLine("       Digite a posição inicial do robô X, Y && (N, L, O, S): ");
-                Console.WriteLine("______________________________________________________________________");
-
+                MostrarMensagens.PosicaoInicial();
 
                 string[] entrada = Console.ReadLine()!.Trim().Split(' ');
                 if (entrada.Length == 3 && int.TryParse(entrada[0], out x) && int.TryParse(entrada[1], out y) && "NLOS".Contains(char.ToUpper(entrada[2][0])))
@@ -31,20 +28,18 @@ namespace RoboTupiniquim
                     direcaoInicial = char.ToUpper(entrada[2][0]);
                     break;
                 }
-                Console.WriteLine("Entrada inválida! Insira dois números e uma letra (N, L, O, S), separados por espaço.");
+                MostrarMensagens.EntradaInvalida();
             }
 
             string comandos;
             while (true)
             {
-                Console.WriteLine("______________________________________________________________________");
-                Console.WriteLine("           Digite os comandos para o robô (D, E, M): ");
-                Console.WriteLine("______________________________________________________________________");
+                MostrarMensagens.EntradaComandos();
                 comandos = Console.ReadLine()!.ToUpper();
                 if (comandos.All(c => "DEM".Contains(c)))
                     break;
 
-                Console.WriteLine("Entrada inválida.Tente novamente.");
+                MostrarMensagens.EntradaInvalida();
             }
             int indiceDirecao = 0;
 
@@ -98,9 +93,9 @@ namespace RoboTupiniquim
                     break;
             }
           
-                for (int i = 0; i < Validacoes.cartesianoY; i++)
+                for (int i = 0; i < cartesianoY; i++)
                 {
-                    for (int j = 0; j < Validacoes.cartesianoX; j++)
+                    for (int j = 0; j < cartesianoX; j++)
                     {
                         if (i == y && j == x)
                             Console.Write(" " + simbolo + " ");
@@ -111,11 +106,7 @@ namespace RoboTupiniquim
                 }
                     Console.WriteLine();
                 }
-            Console.WriteLine("______________________________________________________________________");
-            Console.WriteLine($"\n                Posição Final: {x} {y}");
-            Console.WriteLine($"               Posição Direção robô: {rosaDosVentos[indiceDirecao]}");
-            Console.WriteLine("______________________________________________________________________");
-            Console.ReadLine();
+            MostrarMensagens.SaidaDeDados();
 
         }
     }
