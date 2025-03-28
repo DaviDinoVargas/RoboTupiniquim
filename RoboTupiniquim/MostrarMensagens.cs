@@ -25,7 +25,7 @@ namespace RoboTupiniquim
         public static void EntradaValidaCartesiano()
         {
             Console.WriteLine("______________________________________________________________________");
-            Console.WriteLine($"Plano cartesiano de tamanho {cartesianoX} x {cartesianoY} foi aceito.");
+            Console.WriteLine($"Plano cartesiano de tamanho {Robo.cartesianoX} x {Robo.cartesianoY} foi aceito.");
             Console.WriteLine("______________________________________________________________________");
         }
         public static void PosicaoInicial()
@@ -40,13 +40,14 @@ namespace RoboTupiniquim
             Console.WriteLine("           Digite os comandos para o robô (D, E, M): ");
             Console.WriteLine("______________________________________________________________________");
         }
-        public static void SaidaDeDados()
+        public static void SaidaDeDados(Robo robo)
         {
             Console.WriteLine("______________________________________________________________________");
-            Console.WriteLine($"\n                Posição Final: {x} {y}");
-            Console.WriteLine($"               Posição Direção robô: {rosaDosVentos[indiceDirecao]}");
+            Console.WriteLine($"\n                Posição Final: {robo.X} {robo.Y}");
+            Console.WriteLine($"               Posição Direção robô: {robo.Direcao}");
             Console.WriteLine("______________________________________________________________________");
             Console.ReadLine();
         }
+
     }
 }
