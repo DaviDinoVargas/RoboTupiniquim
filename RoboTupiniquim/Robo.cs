@@ -13,7 +13,10 @@ namespace RoboTupiniquim
 
         private static readonly Dictionary<int, char> rosaDosVentos = new()
         {
-            {0, 'N'}, {1, 'L'}, {2, 'S'}, {3, 'O'}
+            {0, 'N'},
+            {1, 'L'},
+            {2, 'S'},
+            {3, 'O'}
         };
 
         private int indiceDirecao;
@@ -59,10 +62,10 @@ namespace RoboTupiniquim
         {
             switch (indiceDirecao)
             {
-                case 0: Y++; break;
-                case 1: X++; break;
-                case 2: Y--; break;
-                case 3: X--; break;
+                case 0: if(Y < Robo.cartesianoY -1) Y++; break;
+                case 1: if (X < Robo.cartesianoX - 1) X++; break;
+                case 2: if (Y > 0) Y--; break;
+                case 3: if (X > 0) X--; break;
             }
         }
         public void ExibirPosicaoFinal()
@@ -75,16 +78,16 @@ namespace RoboTupiniquim
             switch (rosaDosVentos[indiceDirecao])
             {
                 case 'N':
-                    simbolo = '↑';
+                    simbolo = '^';
                     break;
                 case 'S':
-                    simbolo = '↓';
+                    simbolo = 'v';
                     break;
                 case 'O':
-                    simbolo = '←';
+                    simbolo = '<';
                     break;
                 case 'L':
-                    simbolo = '→';
+                    simbolo = '>';
                     break;
                 default:
                     simbolo = '?';
@@ -107,3 +110,6 @@ namespace RoboTupiniquim
         }
     }
     }
+            /*Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("- ↑. ↓. →. ←. -");
+            Console.ReadKey();*/

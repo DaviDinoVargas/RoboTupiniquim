@@ -39,12 +39,20 @@ namespace RoboTupiniquim
                 string[] entrada = Console.ReadLine()!.Trim().Split(' ');
                 if (entrada.Length == 3 && int.TryParse(entrada[0], out x) && int.TryParse(entrada[1], out y) && "NLOS".Contains(char.ToUpper(entrada[2][0])))
                 {
-                    direcaoInicial = char.ToUpper(entrada[2][0]);
-                    break;
+                    if (x < Robo.cartesianoX && y < Robo.cartesianoY)
+                    {
+                        direcaoInicial = char.ToUpper(entrada[2][0]);
+                        break;
+                    }
+                    else
+                    {
+                      MostrarMensagens.PosicaoForaDoGrid();
+                    }
                 }
-                MostrarMensagens.EntradaInvalida();
+                 MostrarMensagens.EntradaInvalida();
             }
         }
+        
 
         public static void ValidarComandos(Robo robo)
         {
