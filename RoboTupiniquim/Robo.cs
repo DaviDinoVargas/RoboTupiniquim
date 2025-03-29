@@ -98,7 +98,7 @@ namespace RoboTupiniquim
         public static void DesenharPlano(List<Robo> robos)
         {
             Console.Clear();
-            for (int i = 0; i < Robo.cartesianoY; i++)
+            for (int i = Robo.cartesianoY -1; i >= 0; i--)
             {
                 for (int j = 0; j < Robo.cartesianoX; j++)
                 {

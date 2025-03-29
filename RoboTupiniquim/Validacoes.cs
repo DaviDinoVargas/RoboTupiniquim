@@ -14,7 +14,7 @@ namespace RoboTupiniquim
             while (true)
             {
                 MostrarMensagens.CartesianoMensagem();
-                string[] planoCartesiano = Console.ReadLine()!.Split(' ');
+                string[] planoCartesiano = Console.ReadLine()!.Trim().Split(' ');
 
                 if (planoCartesiano.Length == 2 &&
                     int.TryParse(planoCartesiano[0], out Robo.cartesianoX) &&
