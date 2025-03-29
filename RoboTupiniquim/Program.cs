@@ -10,19 +10,36 @@ namespace RoboTupiniquim
             {
                 Validacoes.ValidarCartesiano();
 
-                int x, y;
-                char direcaoInicial;
-                Validacoes.ValidarEntradaPosicao(out x, out y, out direcaoInicial);
+                List<Robo> robos = new List<Robo>();
+                do
+                {
+                    int x, y;
+                    char direcaoInicial;
+                    Validacoes.ValidarEntradaPosicao(out x, out y, out direcaoInicial);
 
-                Robo robo = new Robo(x, y, direcaoInicial);
+                    Robo robo = new Robo(x, y, direcaoInicial);
 
-                Validacoes.ValidarComandos(robo);
-                robo.ExecutarComandos();
-                robo.ExibirPosicaoFinal();
-                robo.DesejarPlano();
+                    Validacoes.ValidarComandos(robo);
+                    robos.Add(robo);
+                } while (AdicionarNovoRobo());
+                {
+                    foreach (Robo robo in robos)
+                    {
+                        robo.ExecutarComandos();
+                        robo.ExibirPosicaoFinal();
+                    }
+                }
 
+                Robo.DesenharPlano(robos);
+                MostrarMensagens.SaidaDeDados(robos);
+                Console.ReadLine();
                 if (!DesejaContinuar()) break;
             }
+        }
+        private static bool AdicionarNovoRobo()
+        {
+            Console.Write("Deseja adicionar outro robô? (s/N): ");
+            return Console.ReadLine()!.ToUpper() == "S";
         }
         public static bool DesejaContinuar()
         {
@@ -30,5 +47,6 @@ namespace RoboTupiniquim
             string opcaoContinuar = Console.ReadLine()!.ToUpper();
             return opcaoContinuar == "S";
         }
+        
     }
 }

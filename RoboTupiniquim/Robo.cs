@@ -7,7 +7,7 @@ namespace RoboTupiniquim
         public int X { get; private set; }
         public int Y { get; private set; }
         public char Direcao { get; private set; }
-        public string Comandos { get; set; } 
+        public string Comandos { get; set; }
         public static int cartesianoX;
         public static int cartesianoY;
 
@@ -81,7 +81,7 @@ namespace RoboTupiniquim
                     simbolo = '↓';
                     break;
                 case 'O':
-                    simbolo = '<';
+                    simbolo = '←';
                     break;
                 case 'L':
                     simbolo = '→';
@@ -92,21 +92,18 @@ namespace RoboTupiniquim
             }
             return simbolo;
         }
-        public void DesejarPlano()
+        public static void DesenharPlano(List<Robo> robos)
         {
-            char simbolo = ObterSimbolo();
-            for (int i = 0; i < cartesianoX; i++)
+            Console.Clear();
+            for (int i = 0; i < Robo.cartesianoY; i++)
             {
-                for (int j = 0; j < cartesianoY; j++)
+                for (int j = 0; j < Robo.cartesianoX; j++)
                 {
-                    if (i == X && j == Y)
-                        Console.Write(" " + simbolo + " ");
-                    else
-                        Console.Write(" . ");
+                    var roboNoLocal = robos.FirstOrDefault(r => r.X == j && r.Y == i);
+                    Console.Write(roboNoLocal != null ? $" {roboNoLocal.ObterSimbolo()} " : " . ");
                 }
                 Console.WriteLine();
             }
-            MostrarMensagens.SaidaDeDados(this);
         }
     }
-}
+    }

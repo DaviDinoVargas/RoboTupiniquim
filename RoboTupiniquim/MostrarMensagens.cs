@@ -40,11 +40,19 @@ namespace RoboTupiniquim
             Console.WriteLine("           Digite os comandos para o robô (D, E, M): ");
             Console.WriteLine("______________________________________________________________________");
         }
-        public static void SaidaDeDados(Robo robo)
+        public static void SaidaDeDados(List<Robo> robos)
         {
             Console.WriteLine("______________________________________________________________________");
-            Console.WriteLine($"\n                Posição Final: {robo.X} {robo.Y}");
-            Console.WriteLine($"               Posição Direção robô: {robo.Direcao}");
+            Console.WriteLine("\n                  POSIÇÕES FINAIS DOS ROBÔS");
+            Console.WriteLine("______________________________________________________________________");
+
+            foreach (Robo robo in robos)
+            {
+                Console.WriteLine($"\n                Robô {robos.IndexOf(robo) + 1}:");
+                Console.WriteLine($"                Posição: {robo.X} {robo.Y}");
+                Console.WriteLine($"                Direção: {robo.Direcao}");
+            }
+
             Console.WriteLine("______________________________________________________________________");
             Console.ReadLine();
         }
