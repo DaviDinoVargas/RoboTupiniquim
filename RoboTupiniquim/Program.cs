@@ -26,7 +26,6 @@ namespace RoboTupiniquim
                     foreach (Robo robo in robos)
                     {
                         robo.ExecutarComandos();
-                        robo.ExibirPosicaoFinal();
                     }
                 }
 

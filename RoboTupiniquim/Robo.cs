@@ -68,10 +68,6 @@ namespace RoboTupiniquim
                 case 3: if (X > 0) X--; break;
             }
         }
-        public void ExibirPosicaoFinal()
-        {
-            Console.WriteLine($"Posição Final: {X} {Y}, Direção: {Direcao}");
-        }
         public char ObterSimbolo()
         {
             char simbolo;
