@@ -54,13 +54,20 @@ namespace RoboTupiniquim
             }
 
             Console.WriteLine("______________________________________________________________________");
-            Console.ReadLine();
         }
         public static void PosicaoForaDoGrid()
         {
             Console.WriteLine("______________________________________________________________________");
             Console.WriteLine("\n                    POSIÇÃO FORA DO GRID!");
             Console.WriteLine("______________________________________________________________________");
+        }
+
+        public static void Continuar()
+        {
+            Console.WriteLine("______________________________________________________________________");
+            Console.WriteLine("                      APERTE <ENTER>.");
+            Console.WriteLine("______________________________________________________________________");
+            Console.ReadLine();
         }
 
     }

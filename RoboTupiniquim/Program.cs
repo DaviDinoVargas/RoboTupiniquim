@@ -31,7 +31,7 @@ namespace RoboTupiniquim
 
                 Robo.DesenharPlano(robos);
                 MostrarMensagens.SaidaDeDados(robos);
-                Console.ReadLine();
+                MostrarMensagens.Continuar();
                 if (!DesejaContinuar()) break;
             }
         }
